@@ -1,1 +1,16 @@
 pe/edu/upeu/app/App.class
+pe/edu/upeu/utils/LeerArchivo.class
+pe/edu/upeu/utils/LeerTeclado.class
+pe/edu/upeu/modelo/DetalleReservaTO.class
+pe/edu/upeu/modelo/ClienteTO.class
+pe/edu/upeu/dao/Cuatro.class
+pe/edu/upeu/data/AppCrud.class
+pe/edu/upeu/modelo/Usuario.class
+pe/edu/upeu/modelo/ProductosTO.class
+pe/edu/upeu/modelo/DescuentosTO.class
+pe/edu/upeu/modelo/Reporte_de_RHTO.class
+pe/edu/upeu/gui/Uno.class
+pe/edu/upeu/utils/ImprimirArreglos.class
+pe/edu/upeu/utils/UtilsX.class
+pe/edu/upeu/modelo/VentaTO.class
+pe/edu/upeu/modelo/RegistroClienteTO.class
