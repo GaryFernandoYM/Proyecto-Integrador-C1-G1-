@@ -16,7 +16,7 @@ public class ProductosDao extends AppCrud{
     LeerArchivo leerArch;
     ProductosTO prodTO;   
 
-    String tipoHabitaciones="Individual\nDoble\nTriple\nCuadruple\nTwin\nMatrimonial\nFamiliar\nSuit\n";
+    String tipoHabitaciones="\nIndividual\nDoble\nTriple\nCuadruple\nTwin\nMatrimonial\nFamiliar\nSuit\n";
 
     public Object[][] crearProductos() {
         leerArch=new LeerArchivo(TABLA_PRODUCTOS);
