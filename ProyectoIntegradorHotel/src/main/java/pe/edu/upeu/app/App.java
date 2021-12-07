@@ -6,8 +6,9 @@ package pe.edu.upeu.app;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello Fernandoo.!" );
+    public static void main( String[] args ){
+        MenuPrincipal mp=new MenuPrincipal();
+        mp.menuOpciones();
+        
     }
 }
