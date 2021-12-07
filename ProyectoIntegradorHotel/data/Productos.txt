@@ -1,1 +1,2 @@
 P1	201-A	doble	30.0	1	unidad
+P2	1	1	1.0	1	1

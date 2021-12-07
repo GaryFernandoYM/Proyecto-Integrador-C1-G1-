@@ -13,8 +13,8 @@ public class MenuPrincipal {
             System.out.println("-----------BIENVENIDO AL SISTEMA--------------------");
             String msg="\nElija una opcion"+ 
             "\n1=Registrar una habitacion"+
-            "\n2= Listar"
-            ;
+            "\n2= Listar"+
+            "\n";
          
             opcionesA=lt.leer(0, msg);  
             while(opcionesA!=0){
