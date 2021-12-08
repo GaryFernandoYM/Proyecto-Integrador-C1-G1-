@@ -8,13 +8,13 @@ public class MenuPrincipal {
    LeerTeclado lt=new LeerTeclado();
    ProductosDao prodDao;
 
-      public void menuOpciones() {
-          int opcionesA=0;
-            System.out.println("-----------BIENVENIDO AL SISTEMA--------------------");
-            String msg="\nElija una opcion"+ 
-            "\n1=Registrar una habitacion"+
-            "\n2= Listar"+
-            "\n";
+   public void menuOpciones() {        
+    int opcionesA=0;
+    System.out.println("-----------------------Bienvenido al Sistema --------------------");
+    String msg="\nEliga una Opcion"+ 
+    "\n1=Registrar una habitacion"+
+    "\n2=Listar"+
+    "\n";
          
             opcionesA=lt.leer(0, msg);  
             while(opcionesA!=0){
@@ -24,7 +24,10 @@ public class MenuPrincipal {
                      prodDao.crearProductos(); 
                      } break;
                   
-                case 2:  break;
+                case 2:{
+                  prodDao=new ProductosDao();
+                  prodDao.imprimirproductos();
+                }  break;
                   
                   default: System.out.println("La opcion ingresada no existe!");
                 }   

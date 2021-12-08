@@ -1,0 +1,3 @@
+P1	201-A	Individual	30.0	1	Unidad
+P2	202-A	Triple	100.0	3	Unidad
+P3	406-H	Matrimonial	286.0	1	Unidad
