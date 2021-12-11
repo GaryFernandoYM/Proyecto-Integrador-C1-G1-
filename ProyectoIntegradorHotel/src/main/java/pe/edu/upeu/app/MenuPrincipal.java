@@ -1,7 +1,7 @@
 package pe.edu.upeu.app;
 
 import pe.edu.upeu.dao.ProductosDao;
-import pe.edu.upeu.dao.RegistroClienteDao;
+import pe.edu.upeu.dao.ReservaDao;
 import pe.edu.upeu.dao.UsuarioDao;
 import pe.edu.upeu.utils.LeerTeclado;
 
@@ -10,6 +10,7 @@ public class MenuPrincipal {
    LeerTeclado lt=new LeerTeclado();
    ProductosDao prodDao;
    UsuarioDao uDao;
+   ReservaDao reDao;
 
    public void mainLogin() {
     uDao=new UsuarioDao();
@@ -33,7 +34,8 @@ public class MenuPrincipal {
     "\n3=Cambiar Registro"+
     "\n4=Eliminar Registro"+
     "\n5=Crear Usuario"+
-    "\n6=otras opciones"+
+    "\n6=Realizar una Reserva"+
+    "\n7=otras opciones"+
     "\n";
          
             opcionesA=lt.leer(0, msg);  
@@ -60,6 +62,10 @@ public class MenuPrincipal {
                   uDao=new UsuarioDao();
                   uDao.crearUsuario();
                 }  break;
+                case 6:{
+                  reDao=new ReservaDao();
+                  reDao.RegistroReserva();
+                }  break;  
                 
                 
                   default: System.out.println("La opcion ingresada no existe!");
