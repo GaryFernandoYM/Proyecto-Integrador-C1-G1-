@@ -125,19 +125,21 @@ public class ReservaDao extends AppCrud{
         leerArch=new LeerArchivo(TABLA_CLIENTE);       
         Object[][] dataCli=null;
         dataCli=buscarContenido(leerArch,0, dni);
-       
-        if(dataCli!=null){
-            return dni;
-            }else{
+        System.out.println("Vista Previa:"+dataCli.length);
+        leerArch=new LeerArchivo(TABLA_PRODUCTOS);
 
-            if(dni!=null && dataCli==null){
+        if(dataCli==null || dataCli.length==0){
+            if(dataCli.length==0){
                 ClienteDao cDao=new ClienteDao();
-                cDao.crearCliente(dni);                
+                cDao.crearCliente(dni); 
+       
             }
-        
             return dni;
-        }   
-    }    
+            
+        }else{
+            return dni;
+        }       
+    }
     
     public void mostrarProductos() {
         leerArch=new LeerArchivo(TABLA_PRODUCTOS);
