@@ -41,10 +41,35 @@ public class ReservaDao extends AppCrud{
     SimpleDateFormat formatofecha = new SimpleDateFormat("dd-MM-yyyy");
 
     public void RegistrarReserva() { 
-        util.clearConsole();
+        //util.clearConsole();
+        double SubtotalXX=0;
+        double TotalimporteXX=0;
+        double descuentoXX=0;
+
         ReservaTO reservaTO=crearReserva();
+        String opcion="SI";
         if(reservaTO!=null){
+            util.clearConsole();
             System.out.println("Agregar Dias adicionales");
+            do {
+                ReservaDetalleTO dataRD=DiasExtrareserva(reservaTO);
+                SubtotalXX+=dataRD.getPrecio();
+                opcion=leerTecla.leer("", "¿Desea disponer otra avitacion? SI/NO");
+            } while (opcion.toUpperCase().equals("SI"));//toUpperCase Convirte a mayuscula
+            
+            //Actulizar xd
+            if (leerTecla.leer("SI", "Desea Aplicar Descuento? SI/NO").toUpperCase().equals("SI")) {
+                
+            }else {
+                descuentoXX=0;
+            }
+            TotalimporteXX=SubtotalXX-descuentoXX;
+            reservaTO.setDescuento(descuentoXX);
+            reservaTO.setSubtotal(SubtotalXX);
+            reservaTO.setTotalimporte(TotalimporteXX); 
+            leerArch=new LeerArchivo(TABLA_RESERVAS);
+            editarRegistro(leerArch, 0, reservaTO.getIdReserva(), reservaTO);
+
         }
         
     }
@@ -73,8 +98,27 @@ public class ReservaDao extends AppCrud{
          return crearReserva() ;
      }    
     }
-    public ReservaDetalleTO DiasExtrareserva() {
-        return null;
+    public ReservaDetalleTO DiasExtrareserva(ReservaTO reseR) {
+        mostrarProductos();
+        reservaDetalleTO=new ReservaDetalleTO();
+        leerArch=new LeerArchivo(TABLA_RENTA_DETALLE);
+        reservaDetalleTO.setIdDetRent(generarId(leerArch, 0, "DR", 2));
+        reservaDetalleTO.setIdReserva(reseR.getIdReserva());
+        reservaDetalleTO.setIdProd(leerTecla.leer("", "ingrese el ID de la Habitacion"));
+        /*leerArch=new LeerArchivo(TABLA_PRODUCTOS);
+        Object[][] prodData=buscarContenido(leerArch, 0, reservaDetalleTO.getIdProd());
+        if (prodData!=null) {
+            double precioX=Double.parseDouble(String.valueOf(prodData[0][4]));
+            +Double.parseDouble(String.valueOf(prodData[0][5]));
+        reservaDetalleTO.setPrecio(precioX);
+        }*/
+        reservaDetalleTO.setPrecio(leerTecla.leer(0, "Ingrese el precio"));
+        reservaDetalleTO.setDNI(leerTecla.leer("", "Ingrese el DNI"));
+      
+        leerArch=new LeerArchivo(TABLA_RENTA_DETALLE);
+
+
+        return reservaDetalleTO;
         
     }
     public String crearCliente(String dni) {

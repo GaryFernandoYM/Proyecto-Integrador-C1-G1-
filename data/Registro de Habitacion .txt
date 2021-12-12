@@ -1,0 +1,1 @@
+P1	 cd /home/dash/Escritorio/Proyecto-Integrador-C1-G1- ; /usr/bin/env /usr/lib/jvm/java-11-openjdk-amd64/bin/java @/tmp/cp_b7vhl1m5pfmbkx0pmeeengamw.argfile pe.edu.upeu.app.App 	201-A	double	40.0	4	unidad
