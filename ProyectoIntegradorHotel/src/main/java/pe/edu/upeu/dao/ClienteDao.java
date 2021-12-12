@@ -9,7 +9,7 @@ import pe.edu.upeu.utils.UtilsX;
 public class ClienteDao extends AppCrud{
     LeerTeclado leerTecla=new LeerTeclado();
     UtilsX util=new UtilsX();
-    final String TABLA_CLIENTE="Registro de Cliente.txt";
+    final String TABLA_CLIENTE="Cliente.txt";
 
     LeerArchivo leerArch;
     ClienteTO cTo;

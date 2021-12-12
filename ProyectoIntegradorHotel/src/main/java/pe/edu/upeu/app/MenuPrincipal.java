@@ -64,7 +64,7 @@ public class MenuPrincipal {
                 }  break;
                 case 6:{
                   reDao=new ReservaDao();
-                  reDao.RegistroReserva();
+                  reDao.RegistrarReserva();
                 }  break;  
                 
                 

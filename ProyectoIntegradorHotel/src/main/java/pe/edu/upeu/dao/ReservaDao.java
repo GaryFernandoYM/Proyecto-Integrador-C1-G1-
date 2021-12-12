@@ -40,16 +40,20 @@ public class ReservaDao extends AppCrud{
     SimpleDateFormat formatofechahora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     SimpleDateFormat formatofecha = new SimpleDateFormat("dd-MM-yyyy");
 
-    public void RegistroReserva() { 
+    public void RegistrarReserva() { 
+        util.clearConsole();
+        ReservaTO reservaTO=crearReserva();
+        if(reservaTO!=null){
+            System.out.println("Agregar Dias adicionales");
+        }
+        
     }
-
-    
-
-    public ReservaTO crearVenta() {
-    leerArch =new LeerArchivo(TABLA_RESERVAS);
+    public ReservaTO crearReserva() {
+        
+        leerArch =new LeerArchivo(TABLA_RESERVAS);
 
     resTO=new ReservaTO();
-    resTO.setIdReserva(generarId(leerArch, 0, "V", 1));
+    resTO.setIdReserva(generarId(leerArch, 0, "R", 1));
     String dnix=leerTecla.leer("", "Ingrese el Dni del Cliente");
     resTO.setDni(crearCliente(dnix));
         Date fecha=new Date();
@@ -66,27 +70,31 @@ public class ReservaDao extends AppCrud{
          return resTO;
      }else{ 
          System.out.println("Intente nuevamente:");  //un metodo se llama asi mismo = recursividad         
-         return crearVenta() ;
-     } 
-    
-
+         return crearReserva() ;
+     }    
+    }
+    public ReservaDetalleTO DiasExtrareserva() {
+        return null;
+        
     }
     public String crearCliente(String dni) {
-        leerArch=new LeerArchivo(TABLA_CLIENTE);
+        leerArch=new LeerArchivo(TABLA_CLIENTE);       
         Object[][] dataCli=null;
-        dataCli=buscarContenido(leerArch, 0, dni);
-        System.out.println("VEr:"+dataCli.length);
-        if(dataCli==null || dataCli.length==0){
-            if(dataCli.length==0){
+        dataCli=buscarContenido(leerArch,0, dni);
+       
+        if(dataCli!=null){
+            return dni;
+            }else{
+
+            if(dni!=null && dataCli==null){
                 ClienteDao cDao=new ClienteDao();
                 cDao.crearCliente(dni);                
             }
+        
             return dni;
-            
-        }else{
-            return dni;
-        }       
-    }
+        }   
+    }    
+    
     public void mostrarProductos() {
         leerArch=new LeerArchivo(TABLA_PRODUCTOS);
         Object[][] data=listarContenido(leerArch);
@@ -94,6 +102,7 @@ public class ReservaDao extends AppCrud{
             System.out.print(data[i][0]+"="+data[i][1]+","+data[i][3]+"(Precio:"+data[i][4]+" / Camas: "+ data[i][5]+") |\t");
         }
         System.out.println("\n");
+    
+    
     }
 }
-       
