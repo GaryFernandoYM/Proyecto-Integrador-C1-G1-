@@ -35,6 +35,7 @@ public class ProductosDao extends AppCrud{
     }
 
     public void reportarproductos() {
+        util.clearConsole();
 
         leerArch=new LeerArchivo(TABLA_PRODUCTOS);
         Object[][] data= listarContenido(leerArch);
@@ -52,6 +53,7 @@ public class ProductosDao extends AppCrud{
        System.out.println();
     }
     public void reportarproductos(Object[][] data) {
+       
        util.pintarLine('H', 33);
        util.pintarTextHeadBody('H', 3, "ID,N°Habitacion,Estado,Tipo,Precio");
        System.out.println("");        

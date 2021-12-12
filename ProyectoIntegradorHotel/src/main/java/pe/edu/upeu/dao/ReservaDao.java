@@ -105,15 +105,15 @@ public class ReservaDao extends AppCrud{
         reservaDetalleTO.setIdDetRent(generarId(leerArch, 0, "DR", 2));
         reservaDetalleTO.setIdReserva(reseR.getIdReserva());
         reservaDetalleTO.setIdProd(leerTecla.leer("", "ingrese el ID de la Habitacion"));
-        /*leerArch=new LeerArchivo(TABLA_PRODUCTOS);
+        leerArch=new LeerArchivo(TABLA_PRODUCTOS);
         Object[][] prodData=buscarContenido(leerArch, 0, reservaDetalleTO.getIdProd());
         if (prodData!=null) {
             double precioX=Double.parseDouble(String.valueOf(prodData[0][4]));
-            +Double.parseDouble(String.valueOf(prodData[0][5]));
+            
         reservaDetalleTO.setPrecio(precioX);
-        }*/
-        reservaDetalleTO.setPrecio(leerTecla.leer(0, "Ingrese el precio"));
-        reservaDetalleTO.setDNI(leerTecla.leer("", "Ingrese el DNI"));
+        }
+        //reservaDetalleTO.setPrecio(leerTecla.leer(0, "Ingrese el precio"));
+        //reservaDetalleTO.setDNI(leerTecla.leer("", "Ingrese el DNI otra vez por favor"));
       
         leerArch=new LeerArchivo(TABLA_RENTA_DETALLE);
 
@@ -143,10 +143,9 @@ public class ReservaDao extends AppCrud{
         leerArch=new LeerArchivo(TABLA_PRODUCTOS);
         Object[][] data=listarContenido(leerArch);
         for (int i = 0; i < data.length; i++) {
-            System.out.print(data[i][0]+"="+data[i][1]+","+data[i][3]+"(Precio:"+data[i][4]+" / Camas: "+ data[i][5]+") |\t");
+            System.out.print(data[i][0]+"="+data[i][1]+
+            "(Precio:"+data[i][4]+" / Estado: "+ data[i][2]+" / Cantidad de Camas: "+ data[i][5]+") |\t");
         }
         System.out.println("\n");
-    
-    
     }
 }

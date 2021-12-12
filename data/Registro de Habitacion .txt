@@ -1,1 +1,8 @@
-P1	 cd /home/dash/Escritorio/Proyecto-Integrador-C1-G1- ; /usr/bin/env /usr/lib/jvm/java-11-openjdk-amd64/bin/java @/tmp/cp_b7vhl1m5pfmbkx0pmeeengamw.argfile pe.edu.upeu.app.App 	201-A	double	40.0	4	unidad
+P1	201-A	Disponible	Individual	30.0	1	Unidad
+P2	202-A	Disponible	Doble	70.0	2	Unidad
+P3	403-A	Disponible	Triple	100.0	3	Unidad
+P4	204-H	Ocupado	Cuadruple	155.0	4	Unidad
+P5	405-H	Ocupado	Twin	200.0	3	Unidad
+P6	406-H	Ocupado	Matrimonial	285.0	1	Unidad
+P7	207-A	Ocupado	Familiar	180.0	3	Unidad
+P8	407-K	Disponible	Suit	1000.0	5	Unidad
