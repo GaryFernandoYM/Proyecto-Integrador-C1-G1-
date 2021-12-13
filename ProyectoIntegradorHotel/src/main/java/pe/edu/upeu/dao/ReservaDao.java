@@ -83,6 +83,7 @@ public class ReservaDao extends AppCrud{
     resTO.setDni(crearCliente(dnix));
         Date fecha=new Date();
      resTO.setFecha(formatofechahora.format(fecha));
+     resTO.setOrigen(leerTecla.leer("","Ingrese el Origen"));
      resTO.setSubtotal(0);
      resTO.setDescuento(0);
      resTO.setTotalimporte(0);
@@ -112,6 +113,7 @@ public class ReservaDao extends AppCrud{
             
         reservaDetalleTO.setPrecio(precioX);
         }
+        
         //reservaDetalleTO.setPrecio(leerTecla.leer(0, "Ingrese el precio"));
         //reservaDetalleTO.setDNI(leerTecla.leer("", "Ingrese el DNI otra vez por favor"));
       
@@ -149,5 +151,79 @@ public class ReservaDao extends AppCrud{
             "(Precio:"+data[i][4]+" / Estado: "+ data[i][2]+" / Cantidad de Camas: "+ data[i][5]+") |\t");
         }
         System.out.println("\n");
+    }
+    public void reporteReservasFinal() {
+        util.clearConsole();
+        System.out.println("===================Registro Ventas==================");
+        String fechaInit=leerTecla.leer("", "Ingrese F. Inicio (dd-MM-yyyy)");
+        String fechaFinal=leerTecla.leer("", "Ingrese F. Final (dd-MM-yyyy)");
+        leerArch=new LeerArchivo(TABLA_RESERVAS);
+        Object[][] dataR=listarContenido(leerArch);
+        int contadorRRF=0;
+        try {
+             //Para saber que cantidad de registros coinciden con el rango de fecha
+             for (int i = 0; i < dataR.length; i++) {
+                String[] fechaReserva=String.valueOf(dataR[i][2]).split(" ");
+                Date fechaReservaX=formatofecha.parse(fechaReserva[0]);
+                if(
+                (fechaReservaX.after(formatofecha.parse(fechaInit)) || fechaInit.equals(fechaReserva[0])) && //depues de la fecha 
+                (fechaReservaX.before(formatofecha.parse(fechaFinal)) || fechaFinal.equals(fechaReserva[0])) // antes de la fecha
+                ){
+                    contadorRRF++; //contador
+                }
+            } 
+            //pasa los datos al valor de tipo ReservaTO R.fechas
+            ReservaTO[] dataReal=new ReservaTO[contadorRRF];
+            int indiceVector=0;
+            for (int i = 0; i < dataR.length; i++) {
+                String[] fechaReserva=String.valueOf(dataR[i][2]).split(" ");
+                Date fechaReservaX=formatofecha.parse(fechaReserva[0]);
+                if(
+                (fechaReservaX.after(formatofecha.parse(fechaInit)) || fechaInit.equals(fechaReserva[0])) && //depues de la fecha 
+                (fechaReservaX.before(formatofecha.parse(fechaFinal)) || fechaFinal.equals(fechaReserva[0])) // antes de la fecha
+                ){
+                   ReservaTO rTo=new ReservaTO();
+                   rTo.setIdReserva(dataR[i][0].toString());
+                   rTo.setDni(dataR[i][1].toString()); 
+                   rTo.setFecha(dataR[i][2].toString()); 
+                   rTo.setOrigen(dataR[i][3].toString()); 
+                   rTo.setDescuento(Double.parseDouble(String.valueOf(dataR[i][5])));
+                   rTo.setSubtotal(Double.parseDouble(String.valueOf(dataR[i][4])));
+                   rTo.setTotalimporte(Double.parseDouble(String.valueOf(dataR[i][6])));
+                   dataReal[indiceVector]=rTo;
+                   indiceVector++;
+                }
+            }
+            //Para imprimir las Reservas
+            System.out.println("===================Reporte de Reserva "+fechaInit+" Y "+fechaFinal+"==================");
+            util.pintarLine('H', 39);
+            util.pintarTextHeadBody('H', 3, "ID,DNI Cliente,Origen,sub.total, Descuento,Imp.total");
+            System.out.println("");
+            double subtotalX=0,descuentoX=0, importeTX =0;
+            util.pintarLine('H', 39);
+            for (ReservaTO TOR : dataReal){
+                String datax=TOR.getIdReserva()+","+TOR.getDni()+","+TOR.getOrigen()+","+TOR.getSubtotal()+","+
+                TOR.getDescuento()+","+TOR.getTotalimporte();
+                subtotalX+=TOR.getSubtotal(); 
+                descuentoX+=TOR.getDescuento(); 
+                importeTX+=TOR.getTotalimporte();
+
+                util.pintarTextHeadBody('B', 3, datax);
+ 
+            }
+            util.pintarLine('H', 39);
+            System.out.println("");
+            System.out.println(" | Sub. Total:S/"+ subtotalX+" |Descuento:S/."+descuentoX+
+            "|Imp. Total:S/."+importeTX);
+            util.pintarLine('H', 40);   
+       
+            
+            
+
+
+        } catch (Exception e) {
+            System.err.println("Error al Reportar!!"+e.getMessage());
+        }
+
     }
 }

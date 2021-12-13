@@ -1,4 +1,4 @@
-P1	201-A	Disponible	Individual	30.0	1	Unidad
+P1	201-A	Ocupado	Individual	30.0	1	Unidad
 P2	202-A	Disponible	Doble	70.0	2	Unidad
 P3	403-A	Disponible	Triple	100.0	3	Unidad
 P4	204-H	Ocupado	Cuadruple	155.0	4	Unidad

@@ -35,6 +35,7 @@ public class MenuPrincipal {
     "\n4=Eliminar Registro"+
     "\n5=Crear Usuario"+
     "\n6=Realizar una Reserva"+
+    "\n7=Reportar Reservas"+
     "\n7=otras opciones"+
     "\n";
          
@@ -65,7 +66,11 @@ public class MenuPrincipal {
                 case 6:{
                   reDao=new ReservaDao();
                   reDao.RegistrarReserva();
-                }  break;  
+                }  break; 
+                case 7:{
+                  reDao=new ReservaDao();
+                  reDao.reporteReservasFinal();
+                }  break;   
                 
                 
                   default: System.out.println("La opcion ingresada no existe!");
