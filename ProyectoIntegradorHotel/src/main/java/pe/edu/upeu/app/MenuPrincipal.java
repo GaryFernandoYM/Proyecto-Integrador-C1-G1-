@@ -1,11 +1,17 @@
 package pe.edu.upeu.app;
 
+import org.fusesource.jansi.Ansi;
+import org.fusesource.jansi.AnsiConsole;
+
 import pe.edu.upeu.dao.ProductosDao;
 import pe.edu.upeu.dao.ReservaDao;
 import pe.edu.upeu.dao.UsuarioDao;
 import pe.edu.upeu.utils.LeerTeclado;
+import pe.edu.upeu.utils.UtilsX;
 
 public class MenuPrincipal {
+  UtilsX util=new UtilsX();
+  
 
    LeerTeclado lt=new LeerTeclado();
    ProductosDao prodDao;
@@ -25,18 +31,26 @@ public class MenuPrincipal {
     }
   }
 
-   public void menuOpciones() {        
+   public void menuOpciones() {    
+    util.clearConsole();
+    Ansi color=new Ansi();       
+
+    AnsiConsole.systemInstall();
+         
     int opcionesA=0;
-    System.out.println("-----------------------Bienvenido al Sistema --------------------");
-    String msg="\nEliga una Opcion"+ 
-    "\n1=Registrar una habitacion"+
-    "\n2=Listado del Registro"+
-    "\n3=Cambiar Registro"+
-    "\n4=Eliminar Registro"+
-    "\n5=Crear Usuario"+
-    "\n6=Realizar una Reserva"+
-    "\n7=Reportar Reservas"+
-    "\n7=otras opciones"+
+  
+    System.out.println(color.bgBrightCyan().fgBlack().a("                       Bienvenido al Sistema                        ").reset());
+    System.out.println("");
+    String msg="\nElija una Opcion"+
+    "\n"+
+     
+    "\n1 = Registrar una habitacion"+
+    "\n2 = Listado del Registro"+
+    "\n3 = Cambiar Registro"+
+    "\n4 = Eliminar Registro"+
+    "\n5 = Crear Usuario"+
+    "\n6 = Realizar una Reserva"+
+    "\n7 = Reportar Reservas"+
     "\n";
          
             opcionesA=lt.leer(0, msg);  
@@ -75,7 +89,7 @@ public class MenuPrincipal {
                 
                   default: System.out.println("La opcion ingresada no existe!");
                 }   
-              System.out.println("-------------------------"); //15.511.210.043.330.985.984.000.000        
+              System.out.println("                    ");    
               opcionesA=lt.leer(0,msg);        
             }
       }
